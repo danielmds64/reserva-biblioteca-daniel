@@ -85,6 +85,10 @@ h1, h2 {
   background: #ffffff;
 }
 
+.book-card div {
+  text-align: left;
+}
+
 .book-card h2 {
   margin: 0 0 4px;
   font-size: 17px;
