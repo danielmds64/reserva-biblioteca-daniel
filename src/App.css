@@ -17,6 +17,10 @@ body {
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 }
 
+h1, h2 {
+  color: black;
+}
+
 .app {
   max-width: 720px;
   margin: 0 auto;
