@@ -2,19 +2,24 @@ import { useState } from "react";
 import "./App.css";
 import BookList from "./components/BookList";
 import Panel from "./components/Panel";
-import { books as initialBooks} from "./data/books";
+import BookForm from "./components/BookForm";
+import { books as initialBooks } from "./data/books";
 
 export default function App() {
   const [books, setBooks] = useState(initialBooks);
 
   function handleReserve(bookId) {
-    setBooks((prevBooks) => 
-      prevBooks.map((book) => 
-        book.id === bookId ? {...book, available: !book.available } : book
+    setBooks((prevBooks) =>
+      prevBooks.map((book) =>
+        book.id === bookId ? { ...book, available: !book.available } : book
       )
     );
   }
-  
+
+  function handleAddBook(newBook) {
+    setBooks((prevBooks) => [...prevBooks, newBook]);
+  }
+
   const availableCount = books.filter((book) => book.available).length;
 
   return (
@@ -23,8 +28,14 @@ export default function App() {
         <p className="eyebrow">BIBLIOTECA ITEAM</p>
         <h1>Reserva de livros do acervo.</h1>
         <p>Consulte a disponibilidade e reserve o que precisar.</p>
-        <p>{availableCount} de {books.length} livros disponíveis</p>
+        <p className="counter">
+          {availableCount} de {books.length} livros disponíveis
+        </p>
       </header>
+
+      <Panel title="Novo livro">
+        <BookForm onAddBook={handleAddBook} />
+      </Panel>
 
       <Panel title="Acervo disponível">
         <BookList books={books} onReserve={handleReserve} />
