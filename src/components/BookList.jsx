@@ -1,6 +1,10 @@
 import BookCard from "./BookCard";
 
 export default function BookList({ books, onReserve }) {
+    if (books.length === 0) {
+        return <p>Nenhum livro cadastrado.</p>;
+    }
+
     return (
         <section className="book-list" aria-label="Acervo">
             {books.map((book) => (
